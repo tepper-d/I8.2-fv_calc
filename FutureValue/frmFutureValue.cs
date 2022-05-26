@@ -56,15 +56,15 @@ namespace FutureValue
                     txtFutureValue.Text = futureValue.ToString("c");
                     txtMonthlyInvestment.Focus();
 
-/* ******************************************************************
-*   3. Add code that stores the values for each calculation in the
-*      next row of the array when the user clicks Calculate. Format
-*      the following:
-*      
-*           A. monthlyInvestment           currency
-*           B. futureValue                 currency
-*           C. interestRatePercent         percent
-* ********************************************************* Tepper */
+                /* ******************************************************************
+                *   3. Add code that stores the values for each calculation in the
+                *      next row of the array when the user clicks Calculate. Format
+                *      the following:
+                *      
+                *           A. monthlyInvestment           currency
+                *           B. futureValue                 currency
+                *           C. interestRatePercent         percent
+                * ********************************************************* Tepper */
 
                     decimal interestRatePercent = interestRateYearly / 100;
                     fvCalcs[rowCounter, 0] = monthlyInvestment.ToString("c");       // 3A
@@ -162,9 +162,27 @@ namespace FutureValue
             return futureValue;
         }
 
+/* ******************************************************************
+*   3. Add code to display the elements in the array in a message
+*      box when the user clicks the Exit button. Use tab characters
+*      to format the message box.
+* ********************************************************* Tepper */
+
         private void btnExit_Click(object sender, EventArgs e)
         {
-            // TODO: Display the rectangular array in a dialog box here
+            string message = "Inv / Mo.\t\tRate\t\tYears\t\tFuture Value\n";
+            for (int i = 0; i < fvCalcs.GetLength(0); i++)
+            {
+                if (fvCalcs[i, 0] != null)
+                {
+                    for (int j = 0; j < fvCalcs.GetLength(1); j++)
+                    {
+                        message += fvCalcs[i, j] + "\t\t";
+                    }
+                    message += "\n";
+                }
+            }
+            MessageBox.Show(message, "Future Value Calculations");
 
             this.Close();
         }
